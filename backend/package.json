@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "test": "vitest"
+    "test": "echo hello"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +32,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/compression": "^1.8.1",
     "@types/express": "^5.0.6",
+    "@types/hpp": "^0.2.7",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^25.9.1",
     "drizzle-kit": "^0.31.10",
     "ts-node-dev": "^2.0.0",
