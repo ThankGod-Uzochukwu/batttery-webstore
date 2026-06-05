@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend/battery-web
+        working-directory: frontend
 
     steps:
       - name: Checkout Repository
