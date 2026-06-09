@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
 // ============================================
 // BRAND COLORS — change these to update theme
 // ============================================
 const colors = {
-  primary: "#22C55E",
-  primaryHover: "#16A34A",
-  primaryActive: "#15803D",
-  secondary: "#0D1B2A",
-  secondaryHover: "#1E3448",
-  white: "#FFFFFF",
+  primary: '#22C55E',
+  primaryHover: '#16A34A',
+  primaryActive: '#15803D',
+  secondary: '#0D1B2A',
+  secondaryHover: '#1E3448',
+  white: '#FFFFFF',
 };
 
-type ButtonVariant = "primary" | "secondary" | "outline";
+type ButtonVariant = 'primary' | 'secondary' | 'outline';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -37,12 +37,12 @@ const Spinner = () => (
 );
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
+  variant = 'primary',
   isLoading = false,
   leftIcon,
   rightIcon,
   fullWidth = false,
-  className = "",
+  className = '',
   children,
   disabled,
   style,
@@ -52,12 +52,24 @@ const Button: React.FC<ButtonProps> = ({
 
   const getStyles = (): React.CSSProperties => {
     switch (variant) {
-      case "primary":
-        return { backgroundColor: colors.primary, color: colors.white, border: "2px solid transparent" };
-      case "secondary":
-        return { backgroundColor: colors.secondary, color: colors.white, border: "2px solid transparent" };
-      case "outline":
-        return { backgroundColor: "transparent", color: colors.primary, border: `2px solid ${colors.primary}` };
+      case 'primary':
+        return {
+          backgroundColor: colors.primary,
+          color: colors.white,
+          border: '2px solid transparent',
+        };
+      case 'secondary':
+        return {
+          backgroundColor: colors.secondary,
+          color: colors.white,
+          border: '2px solid transparent',
+        };
+      case 'outline':
+        return {
+          backgroundColor: 'transparent',
+          color: colors.primary,
+          border: `2px solid ${colors.primary}`,
+        };
       default:
         return {};
     }
@@ -75,13 +87,16 @@ const Button: React.FC<ButtonProps> = ({
         focus:outline-none focus:ring-2 focus:ring-offset-2
         disabled:opacity-50 disabled:cursor-not-allowed
         cursor-pointer
-        ${fullWidth ? "w-full" : ""}
+        ${fullWidth ? 'w-full' : ''}
         ${className}
       `.trim()}
       {...rest}
     >
       {isLoading ? (
-        <><Spinner /><span>Loading...</span></>
+        <>
+          <Spinner />
+          <span>Loading...</span>
+        </>
       ) : (
         <>
           {leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
@@ -100,4 +115,4 @@ export default Button;
 // <Button variant="secondary">Learn More</Button>
 // <Button variant="outline">View Details</Button>
 // <Button isLoading={true}>Submitting</Button>
-// <Button variant="primary" fullWidth>Checkout</Button>. 
+// <Button variant="primary" fullWidth>Checkout</Button>.

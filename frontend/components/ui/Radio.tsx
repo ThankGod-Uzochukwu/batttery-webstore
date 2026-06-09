@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 // ============================================
 // BRAND COLORS — change these to update theme
 // ============================================
 const colors = {
-  primary: "#22C55E",
-  secondary: "#0D1B2A",
-  error: "#EF4444",
-  border: "#D1D5DB",
-  hint: "#9CA3AF",
-  white: "#FFFFFF",
+  primary: '#22C55E',
+  secondary: '#0D1B2A',
+  error: '#EF4444',
+  border: '#D1D5DB',
+  hint: '#9CA3AF',
+  white: '#FFFFFF',
 };
 
 interface RadioOption {
@@ -27,7 +27,7 @@ interface RadioGroupProps {
   onChange?: (value: string) => void;
   error?: string;
   hint?: string;
-  direction?: "vertical" | "horizontal";
+  direction?: 'vertical' | 'horizontal';
   className?: string;
 }
 
@@ -39,8 +39,8 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   onChange,
   error,
   hint,
-  direction = "vertical",
-  className = "",
+  direction = 'vertical',
+  className = '',
 }) => {
   return (
     <div className={`flex flex-col gap-2 ${className}`}>
@@ -50,13 +50,15 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
         </span>
       )}
 
-      <div className={`flex gap-3 ${direction === "horizontal" ? "flex-row flex-wrap" : "flex-col"}`}>
+      <div
+        className={`flex gap-3 ${direction === 'horizontal' ? 'flex-row flex-wrap' : 'flex-col'}`}
+      >
         {options.map((option) => {
           const isSelected = value === option.value;
           return (
             <label
               key={option.value}
-              className={`flex items-start gap-3 cursor-pointer ${option.disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`flex items-start gap-3 cursor-pointer ${option.disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <input
                 type="radio"
@@ -69,33 +71,36 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
               />
               <div
                 style={{
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "50%",
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
                   border: `2px solid ${error ? colors.error : isSelected ? colors.primary : colors.border}`,
                   backgroundColor: colors.white,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   flexShrink: 0,
-                  marginTop: "2px",
-                  transition: "all 0.15s ease",
+                  marginTop: '2px',
+                  transition: 'all 0.15s ease',
                 }}
               >
                 <div
                   style={{
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "50%",
+                    width: '10px',
+                    height: '10px',
+                    borderRadius: '50%',
                     backgroundColor: colors.primary,
-                    transform: isSelected ? "scale(1)" : "scale(0)",
-                    transition: "transform 0.15s ease",
+                    transform: isSelected ? 'scale(1)' : 'scale(0)',
+                    transition: 'transform 0.15s ease',
                   }}
                 />
               </div>
 
               <div className="flex flex-col">
-                <span className="text-sm font-medium select-none" style={{ color: colors.secondary }}>
+                <span
+                  className="text-sm font-medium select-none"
+                  style={{ color: colors.secondary }}
+                >
                   {option.label}
                 </span>
                 {option.description && (
@@ -112,14 +117,20 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
       {error && (
         <p className="text-xs flex items-center gap-1" style={{ color: colors.error }}>
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+              clipRule="evenodd"
+            />
           </svg>
           {error}
         </p>
       )}
 
       {hint && !error && (
-        <p className="text-xs" style={{ color: colors.hint }}>{hint}</p>
+        <p className="text-xs" style={{ color: colors.hint }}>
+          {hint}
+        </p>
       )}
     </div>
   );
@@ -133,4 +144,4 @@ export default RadioGroup;
 //   { label: "Standard Delivery", value: "standard", description: "3-5 business days" },
 //   { label: "Express Delivery", value: "express", description: "Next business day" },
 // ]
-// <RadioGroup label="Delivery" name="delivery" options={options} value={selected} onChange={setSelected} />. 
+// <RadioGroup label="Delivery" name="delivery" options={options} value={selected} onChange={setSelected} />.

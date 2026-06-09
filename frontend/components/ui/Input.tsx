@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 // ============================================
 // BRAND COLORS — change these to update theme
 // ============================================
 const colors = {
-  primary: "#22C55E",
-  secondary: "#0D1B2A",
-  error: "#EF4444",
-  border: "#D1D5DB",
-  placeholder: "#9CA3AF",
-  hint: "#9CA3AF",
+  primary: '#22C55E',
+  secondary: '#0D1B2A',
+  error: '#EF4444',
+  border: '#D1D5DB',
+  placeholder: '#9CA3AF',
+  hint: '#9CA3AF',
 };
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -27,18 +27,26 @@ const Input: React.FC<InputProps> = ({
   hint,
   leftIcon,
   rightIcon,
-  className = "",
+  className = '',
   id,
   ...rest
 }) => {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, "-");
+  const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
 
   return (
     <div className="flex flex-col gap-1.5 w-full">
       {label && (
-        <label htmlFor={inputId} className="text-sm font-medium" style={{ color: colors.secondary }}>
+        <label
+          htmlFor={inputId}
+          className="text-sm font-medium"
+          style={{ color: colors.secondary }}
+        >
           {label}
-          {rest.required && <span style={{ color: colors.primary }} className="ml-1">*</span>}
+          {rest.required && (
+            <span style={{ color: colors.primary }} className="ml-1">
+              *
+            </span>
+          )}
         </label>
       )}
 
@@ -62,8 +70,8 @@ const Input: React.FC<InputProps> = ({
             focus:outline-none focus:ring-2 focus:ring-offset-0
             disabled:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60
             placeholder:text-gray-400
-            ${leftIcon ? "pl-10" : ""}
-            ${rightIcon ? "pr-10" : ""}
+            ${leftIcon ? 'pl-10' : ''}
+            ${rightIcon ? 'pr-10' : ''}
             ${className}
           `.trim()}
           {...rest}
@@ -79,14 +87,20 @@ const Input: React.FC<InputProps> = ({
       {error && (
         <p className="text-xs flex items-center gap-1" style={{ color: colors.error }}>
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+              clipRule="evenodd"
+            />
           </svg>
           {error}
         </p>
       )}
 
       {hint && !error && (
-        <p className="text-xs" style={{ color: colors.hint }}>{hint}</p>
+        <p className="text-xs" style={{ color: colors.hint }}>
+          {hint}
+        </p>
       )}
     </div>
   );
@@ -98,4 +112,4 @@ export default Input;
 // <Input label="Email" type="email" placeholder="you@example.com" required />
 // <Input label="Password" type="password" error="Password is required" />
 // <Input label="Search" leftIcon={<SearchIcon />} />
-// <Input label="Phone" hint="Include country code e.g +234" />. 
+// <Input label="Phone" hint="Include country code e.g +234" />.
