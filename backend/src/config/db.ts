@@ -4,7 +4,7 @@ import { env } from './env';
 import logger from './logger';
 
 let client: ReturnType<typeof postgres>;
-let db: ReturnType<typeof drizzle>;
+let db: ReturnType<typeof drizzle> | undefined;
 
 export async function initializeDatabase () {
     try
@@ -41,5 +41,3 @@ export function getDatabase () {
     }
     return db;
 }
-
-export default db;
