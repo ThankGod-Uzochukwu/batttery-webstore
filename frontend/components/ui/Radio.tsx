@@ -43,9 +43,17 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`flex flex-col gap-2 ${className}`}>
+    <div
+      className={`flex flex-col gap-2 ${className}`}
+      role="radiogroup"
+      aria-labelledby={label ? `${name}-label` : undefined}
+    >
       {label && (
-        <span className="text-sm font-medium" style={{ color: colors.secondary }}>
+        <span
+          id={`${name}-label`}
+          className="text-sm font-medium"
+          style={{ color: colors.secondary }}
+        >
           {label}
         </span>
       )}
@@ -58,7 +66,9 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           return (
             <label
               key={option.value}
-              className={`flex items-start gap-3 cursor-pointer ${option.disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`flex items-start gap-3 cursor-pointer group ${
+                option.disabled ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             >
               <input
                 type="radio"
@@ -70,6 +80,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                 className="sr-only"
               />
               <div
+                className="group-focus-within:ring-2 group-focus-within:ring-green-500 group-focus-within:ring-offset-2"
                 style={{
                   width: '20px',
                   height: '20px',
