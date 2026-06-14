@@ -1,11 +1,25 @@
-import HeroSection from '../components/sections/HeroSection';
-import FeaturedProducts from '@/components/sections/FeaturedProducts';
+import {
+  HeroSection,
+  FeaturesBar,
+  CategoryGrid,
+  FeaturedProducts,
+  PromoBanner,
+  FeaturedBrands,
+  BlogSection,
+  NewsletterCTA,
+} from '@/components/sections';
 
 export default function HomePage() {
   return (
-    <main className="flex-1">
+    <main>
       <HeroSection />
+      <FeaturesBar />
+      <CategoryGrid />
       <FeaturedProducts />
+      <PromoBanner />
+      <FeaturedBrands />
+      <BlogSection />
+      <NewsletterCTA />
     </main>
   );
 }
