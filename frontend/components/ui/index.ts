@@ -5,6 +5,8 @@ export { default as Textarea } from './Textarea';
 export { default as Checkbox } from './Checkbox';
 export { default as RadioGroup } from './Radio';
 export { default as Loader } from './loader';
+export { Icon } from './Icon';
+export { SvgIcon } from './SvgIcon';
 export {
   default as Skeleton,
   ProductCardSkeleton,
