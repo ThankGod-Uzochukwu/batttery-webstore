@@ -1,9 +1,11 @@
-import Image from 'next/image';
+import HeroSection from '../components/sections/HeroSection';
+import FeaturedProducts from '@/components/sections/FeaturedProducts';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Client Battery Store staging started</h1>
-    </div>
+    <main className="flex-1">
+      <HeroSection />
+      <FeaturedProducts />
+    </main>
   );
 }
