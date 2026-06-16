@@ -9,7 +9,12 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
-    "test": "echo frontend-tests"
+    "test": "echo frontend-tests",
+    "test-parser": "tsx --require tsconfig-paths/register scripts/test-parser.ts",
+    "test-transformer": "tsx --require tsconfig-paths/register scripts/test-transformer.ts",
+    "test-import-pipeline": "tsx --require tsconfig-paths/register scripts/test-import-pipeline.ts",
+    "test-importer": "tsx --require tsconfig-paths/register scripts/test-importer.ts",
+    "seed:products": "tsx --require tsconfig-paths/register scripts/seed-products.ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -22,7 +27,8 @@
   "dependencies": {
     "next": "16.2.7",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -35,6 +41,9 @@
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5",
+    "zod": "^4.4.3"
   }
 }
