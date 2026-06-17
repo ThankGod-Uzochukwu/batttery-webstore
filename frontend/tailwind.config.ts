@@ -3,6 +3,9 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   darkMode: 'class',
   content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './features/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
     './src/features/**/*.{ts,tsx}',
@@ -10,37 +13,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary colors
         primary: {
-          DEFAULT: '#CC0000',
-          dark: '#990000',
-          light: '#FF3333',
+          DEFAULT: 'var(--color-primary)',
+          foreground: 'var(--color-primary-foreground)',
+          light: 'var(--color-primary-light)',
+          dark: 'var(--color-primary-dark)',
+          muted: 'var(--color-primary-muted)',
         },
-        // Secondary colors
         secondary: {
-          DEFAULT: '#1a1a1a',
-          light: '#333333',
+          DEFAULT: 'var(--color-secondary)',
+          foreground: 'var(--color-secondary-foreground)',
+          light: 'var(--color-secondary-light)',
+          dark: 'var(--color-secondary-dark)',
         },
-        // Accent
-        accent: '#FF6600',
-        // Background
         background: {
-          DEFAULT: '#FFFFFF',
-          alt: '#F5F5F5',
+          DEFAULT: 'var(--color-background)',
+          surface: 'var(--color-surface)',
+          alt: 'var(--color-surface-alt)',
         },
-        // Border
-        border: '#E0E0E0',
-        // Text
-        text: {
-          primary: '#1a1a1a',
-          secondary: '#555555',
-          muted: '#999999',
-        },
-        // Status colors
-        success: '#22C55E',
-        warning: '#F59E0B',
-        error: '#EF4444',
-        info: '#3B82F6',
+        border: 'var(--color-border)',
+        foreground: 'var(--color-foreground)',
+        muted: 'var(--color-muted)',
+        success: 'var(--color-success)',
+        warning: 'var(--color-warning)',
+        error: 'var(--color-error)',
+        info: 'var(--color-info)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

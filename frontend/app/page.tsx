@@ -1,15 +1,17 @@
-import HeroSection from '@/components/sections/HeroSection';
-import FeaturesBar from '@/components/sections/FeaturesBar';
-import CategoryGrid from '@/components/sections/CategoryGrid';
-import FeaturedProducts from '@/components/sections/FeaturedProducts';
-import PromoBanner from '@/components/sections/PromoBanner';
-import FeaturedBrands from '@/components/sections/FeaturedBrands';
-import BlogSection from '@/components/sections/BlogSection';
-import NewsletterCTA from '@/components/sections/NewsletterCTA';
+import {
+  HeroSection,
+  FeaturesBar,
+  CategoryGrid,
+  FeaturedProducts,
+  PromoBanner,
+  FeaturedBrands,
+  BlogSection,
+  NewsletterCTA,
+} from '@/components/sections';
 
 export default function HomePage() {
   return (
-    <>
+    <main>
       <HeroSection />
       <FeaturesBar />
       <CategoryGrid />
@@ -18,6 +20,6 @@ export default function HomePage() {
       <FeaturedBrands />
       <BlogSection />
       <NewsletterCTA />
-    </>
+    </main>
   );
 }
