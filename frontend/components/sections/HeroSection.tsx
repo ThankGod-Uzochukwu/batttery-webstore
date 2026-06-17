@@ -1,114 +1,71 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { mockHeroSlides } from '@/lib/mock-data';
 
-// ============================================
-// BRAND COLORS — change these to update theme
-// ============================================
 const colors = {
   primary: '#22C55E',
   primaryHover: '#16A34A',
   secondary: '#0D1B2A',
   white: '#FFFFFF',
-  textMuted: '#9CA3AF',
+  textMuted: '#94A3B8',
 };
 
-// ─────────────────────────────────────────
-// HERO LOGO PLACEHOLDER
-// Shows the JL brand mark when no image
-// ─────────────────────────────────────────
-const HeroLogoMark = () => (
-  <div
-    className="relative flex items-center justify-center rounded-2xl"
-    style={{
-      width: '220px',
-      height: '220px',
-      backgroundColor: colors.secondary,
-      border: `3px solid ${colors.primary}`,
-    }}
-  >
-    {/* Outer ring */}
-    <div
-      className="absolute inset-0 rounded-2xl opacity-20"
-      style={{
-        background: `radial-gradient(circle at 30% 30%, ${colors.primary}, transparent 60%)`,
-      }}
-    />
-    {/* JL text */}
-    <div className="flex items-end gap-1 z-10">
-      <span
-        className="text-6xl font-black tracking-tight leading-none"
-        style={{ color: colors.white }}
-      >
-        J
-      </span>
-      <span
-        className="text-6xl font-black tracking-tight leading-none"
-        style={{ color: colors.primary }}
-      >
-        L
-      </span>
-    </div>
-    {/* Plug icon dots */}
-    <div className="absolute top-6 right-8 flex flex-col gap-1.5">
-      {[0, 1].map((i) => (
-        <div
-          key={i}
-          className="rounded-full"
-          style={{ width: '6px', height: '16px', backgroundColor: colors.primary, opacity: 0.8 }}
-        />
-      ))}
-    </div>
-  </div>
-);
-
-// ─────────────────────────────────────────
-// MAIN HERO SECTION
-// ─────────────────────────────────────────
-interface HeroSectionProps {
-  className?: string;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
-  const slide = mockHeroSlides[0];
-
+const HeroSection: React.FC = () => {
   return (
-    <section className={`w-full ${className}`} style={{ backgroundColor: colors.secondary }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-14 md:py-20">
-          {/* LEFT — Text content */}
-          <div className="flex flex-col gap-6 max-w-lg">
-            {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
-              <span style={{ color: colors.white }}>{slide.headline} </span>
+    <section style={{ backgroundColor: colors.secondary, minHeight: '520px' }}>
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ paddingTop: '64px', paddingBottom: '64px' }}
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          {/* LEFT */}
+          <div className="flex flex-col gap-6 max-w-xl">
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 900,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                margin: 0,
+              }}
+            >
+              <span style={{ color: colors.white }}>Power Your</span>
               <br />
-              <span style={{ color: colors.primary }}>{slide.headlineAccent}</span>
+              <span style={{ color: colors.primary }}>Home &amp; Office</span>
               <br />
-              <span style={{ color: colors.white }}>{slide.headlineSuffix}</span>
+              <span style={{ color: colors.white }}>With Confidence</span>
             </h1>
 
-            {/* Subtext */}
             <p
-              className="text-sm md:text-base leading-relaxed max-w-sm"
-              style={{ color: colors.textMuted }}
+              style={{
+                color: colors.textMuted,
+                fontSize: '15px',
+                lineHeight: 1.7,
+                maxWidth: '420px',
+                margin: 0,
+              }}
             >
-              {slide.subtext}
+              Premium electrical products — lights, plugs, appliances and everything in between.
+              Quality you can trust.
             </p>
 
-            {/* CTA Buttons */}
+            {/* Buttons */}
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href={slide.primaryCta.href}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-bold transition-all duration-200"
-                style={{ backgroundColor: colors.primary, color: colors.white }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = colors.primaryHover;
+                href="/products"
+                className="inline-flex items-center gap-2 font-bold text-sm rounded-md transition-all duration-200"
+                style={{
+                  backgroundColor: colors.primary,
+                  color: colors.white,
+                  padding: '12px 24px',
                 }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = colors.primary;
-                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.backgroundColor = colors.primaryHover)
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.backgroundColor = colors.primary)
+                }
               >
                 Shop Now
                 <svg
@@ -124,19 +81,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
               </Link>
 
               <Link
-                href={slide.secondaryCta.href}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-bold transition-all duration-200"
+                href="/catalogue"
+                className="inline-flex items-center font-bold text-sm rounded-md transition-all duration-200"
                 style={{
                   backgroundColor: 'transparent',
                   color: colors.white,
-                  border: `2px solid rgba(255,255,255,0.3)`,
+                  padding: '12px 24px',
+                  border: '2px solid rgba(255,255,255,0.25)',
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = colors.primary;
                   (e.currentTarget as HTMLElement).style.color = colors.primary;
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.25)';
                   (e.currentTarget as HTMLElement).style.color = colors.white;
                 }}
               >
@@ -144,28 +102,96 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
               </Link>
             </div>
 
-            {/* Trust badges */}
-            <div className="flex items-center gap-4 pt-2">
+            {/* Stats */}
+            <div className="flex items-center gap-8 pt-2">
               {[
                 { value: '500+', label: 'Products' },
                 { value: '10k+', label: 'Customers' },
                 { value: '5★', label: 'Rated' },
               ].map((stat) => (
-                <div key={stat.label} className="flex flex-col">
-                  <span className="text-lg font-black" style={{ color: colors.primary }}>
+                <div key={stat.label}>
+                  <div
+                    style={{
+                      color: colors.primary,
+                      fontWeight: 900,
+                      fontSize: '22px',
+                      lineHeight: 1,
+                    }}
+                  >
                     {stat.value}
-                  </span>
-                  <span className="text-xs" style={{ color: colors.textMuted }}>
+                  </div>
+                  <div style={{ color: colors.textMuted, fontSize: '12px', marginTop: '2px' }}>
                     {stat.label}
-                  </span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT — Brand logo mark */}
-          <div className="flex-shrink-0 flex items-center justify-center">
-            <HeroLogoMark />
+          {/* RIGHT — JL Logo Mark */}
+          <div className="flex-shrink-0">
+            <div
+              className="flex items-center justify-center relative rounded-2xl"
+              style={{
+                width: '240px',
+                height: '240px',
+                backgroundColor: '#0F2337',
+                border: `2px solid ${colors.primary}`,
+                boxShadow: `0 0 40px rgba(34,197,94,0.15)`,
+              }}
+            >
+              {/* Glow */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '16px',
+                  background: `radial-gradient(circle at 30% 30%, rgba(34,197,94,0.12), transparent 60%)`,
+                }}
+              />
+              {/* Plug pins */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '24px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '6px',
+                }}
+              >
+                {[0, 1].map((i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: '5px',
+                      height: '18px',
+                      borderRadius: '3px',
+                      backgroundColor: colors.primary,
+                      opacity: 0.7,
+                    }}
+                  />
+                ))}
+              </div>
+              {/* JL text */}
+              <div className="flex items-end gap-1 relative z-10">
+                <span
+                  style={{ fontSize: '72px', fontWeight: 900, color: colors.white, lineHeight: 1 }}
+                >
+                  J
+                </span>
+                <span
+                  style={{
+                    fontSize: '72px',
+                    fontWeight: 900,
+                    color: colors.primary,
+                    lineHeight: 1,
+                  }}
+                >
+                  L
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +200,3 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
 };
 
 export default HeroSection;
-
-// --- USAGE ---
-// import HeroSection from "@/components/sections/HeroSection"
-// <HeroSection />
