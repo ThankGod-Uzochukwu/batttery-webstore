@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Icon } from '../ui';
 
 const colors = {
   primary: '#22C55E',
@@ -35,32 +36,7 @@ const Logo = () => (
       flexShrink: 0,
     }}
   >
-    <span
-      style={{
-        fontSize: '22px',
-        fontWeight: 900,
-        color: colors.secondary,
-        letterSpacing: '-0.02em',
-      }}
-    >
-      Jav
-    </span>
-    <span
-      style={{ fontSize: '22px', fontWeight: 900, color: colors.primary, letterSpacing: '-0.02em' }}
-    >
-      aL
-    </span>
-    <span
-      style={{
-        width: '5px',
-        height: '5px',
-        borderRadius: '50%',
-        backgroundColor: colors.primary,
-        marginBottom: '10px',
-        marginLeft: '-1px',
-        display: 'inline-block',
-      }}
-    />
+    <Icon name="Logo" color={colors.primary} width={70} />
   </Link>
 );
 
