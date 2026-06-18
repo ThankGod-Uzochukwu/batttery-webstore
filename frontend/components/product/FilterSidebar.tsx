@@ -262,6 +262,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onChange, classN
                 onChange({ ...filters, rating: filters.rating === stars ? null : stars })
               }
               className="flex items-center gap-2 text-left"
+              aria-label={`${stars} stars and above`}
             >
               <div className="flex items-center gap-0.5">
                 {[1, 2, 3, 4, 5].map((s) => (
