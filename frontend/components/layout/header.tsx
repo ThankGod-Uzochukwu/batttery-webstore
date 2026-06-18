@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Icon } from '../ui';
 
 const colors = {
   primary: '#22C55E',
@@ -35,32 +36,7 @@ const Logo = () => (
       flexShrink: 0,
     }}
   >
-    <span
-      style={{
-        fontSize: '22px',
-        fontWeight: 900,
-        color: colors.secondary,
-        letterSpacing: '-0.02em',
-      }}
-    >
-      Jav
-    </span>
-    <span
-      style={{ fontSize: '22px', fontWeight: 900, color: colors.primary, letterSpacing: '-0.02em' }}
-    >
-      aL
-    </span>
-    <span
-      style={{
-        width: '5px',
-        height: '5px',
-        borderRadius: '50%',
-        backgroundColor: colors.primary,
-        marginBottom: '10px',
-        marginLeft: '-1px',
-        display: 'inline-block',
-      }}
-    />
+    <Icon name="Logo" color={colors.primary} width={70} />
   </Link>
 );
 
@@ -70,14 +46,14 @@ const Header: React.FC<{ cartCount?: number }> = ({ cartCount = 0 }) => {
   const [path, setPath] = useState('/');
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setPath(window.location.pathname);
-      const onScroll = () => setScrolled(window.scrollY > 10);
-      window.addEventListener('scroll', onScroll);
-      return () => window.removeEventListener('scroll', onScroll);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     setPath(window.location.pathname);
+  //     const onScroll = () => setScrolled(window.scrollY > 10);
+  //     window.addEventListener('scroll', onScroll);
+  //     return () => window.removeEventListener('scroll', onScroll);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -390,8 +366,8 @@ const Header: React.FC<{ cartCount?: number }> = ({ cartCount = 0 }) => {
               style={{ borderBottom: `1px solid ${colors.border}` }}
             >
               <Logo />
-              <button 
-                onClick={() => setMobileOpen(false)} 
+              <button
+                onClick={() => setMobileOpen(false)}
                 style={{ color: colors.secondary }}
                 aria-label="Close menu"
               >

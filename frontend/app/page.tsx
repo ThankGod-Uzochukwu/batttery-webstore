@@ -13,10 +13,7 @@ export default function HomePage() {
       <HeroSection />
       <FeaturesBar />
       <CategoryGrid />
-      <FeaturedProducts />
-      <PromoBanner />
       <FeaturedBrands />
-      <BlogSection />
       <NewsletterCTA />
     </>
   );

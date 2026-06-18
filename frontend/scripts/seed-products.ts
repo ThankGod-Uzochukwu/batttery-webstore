@@ -10,7 +10,7 @@ async function main() {
       importResult.invalidProducts.map(({ row, errors }) => ({
         row,
         errors,
-      })),
+      }))
     );
   }
 
