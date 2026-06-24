@@ -1,7 +1,6 @@
 import { MongoClient } from 'mongodb';
-import type { Collection, Db, Document } from 'mongodb';
+import type { Collection, Db } from 'mongodb';
 import { z } from 'zod';
-import type { Product } from '@/features/products/types/product.type';
 
 export const MongoProductSchema = z.object({
   sku: z.string().min(1),
@@ -44,15 +43,6 @@ export type MongoProduct = z.infer<typeof MongoProductSchema>;
 export type Order = z.infer<typeof OrderSchema>;
 export type OrderItem = z.infer<typeof OrderItemSchema>;
 
-export interface ProductSeedResult {
-  database: string;
-  collection: string;
-  indexedFields: string[];
-  inserted: number;
-  matched: number;
-  modified: number;
-}
-
 const DEFAULT_DB_NAME = 'battery-webstore';
 const DEFAULT_PRODUCTS_COLLECTION = 'products';
 const DEFAULT_ORDERS_COLLECTION = 'orders';
@@ -82,8 +72,8 @@ export function getMongoDb(client: MongoClient): Db {
   return client.db(getMongoConfig().dbName);
 }
 
-export function getProductsCollection(db: Db): Collection<Document> {
-  return db.collection(getMongoConfig().productsCollection);
+export function getProductsCollection(db: Db): Collection<MongoProduct> {
+  return db.collection<MongoProduct>(getMongoConfig().productsCollection);
 }
 
 export function getOrdersCollection(db: Db): Collection<Order> {
@@ -94,7 +84,7 @@ export function getOrderItemsCollection(db: Db): Collection<OrderItem> {
   return db.collection<OrderItem>(getMongoConfig().orderItemsCollection);
 }
 
-export async function createProductIndexes(collection: Collection<Document>) {
+export async function createProductIndexes(collection: Collection<MongoProduct>) {
   await collection.createIndexes([
     {
       key: { sku: 1 },
@@ -162,53 +152,7 @@ export async function createOrderItemIndexes(collection: Collection<OrderItem>) 
 }
 
 export async function createMongoIndexes(db: Db) {
-  await Promise.all([
-    createProductIndexes(getProductsCollection(db)),
-    createOrderIndexes(getOrdersCollection(db)),
-    createOrderItemIndexes(getOrderItemsCollection(db)),
-  ]);
-}
-
-export async function seedProductsToMongo(products: Product[]): Promise<ProductSeedResult> {
-  const config = getMongoConfig();
-  const client = createMongoClient(config.uri);
-
-  try {
-    await client.connect();
-
-    const db = client.db(config.dbName);
-    const collection = getProductsCollection(db);
-
-    await createMongoIndexes(db);
-
-    const now = new Date();
-    const result = await collection.bulkWrite(
-      products.map((product) => ({
-        updateOne: {
-          filter: { sku: product.sku },
-          update: {
-            $set: {
-              ...product,
-              updatedAt: now,
-            },
-            $setOnInsert: {
-              createdAt: now,
-            },
-          },
-          upsert: true,
-        },
-      })),
-    );
-
-    return {
-      database: config.dbName,
-      collection: config.productsCollection,
-      indexedFields: ['sku', 'slug', 'category', 'subcategory', 'brand', 'stockStatus', 'price', 'textSearch'],
-      inserted: result.upsertedCount,
-      matched: result.matchedCount,
-      modified: result.modifiedCount,
-    };
-  } finally {
-    await client.close();
-  }
+  await createProductIndexes(getProductsCollection(db));
+  await createOrderIndexes(getOrdersCollection(db));
+  await createOrderItemIndexes(getOrderItemsCollection(db));
 }
